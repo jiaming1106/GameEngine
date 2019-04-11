@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1554974261 source:/home/myubuntu/git/EventHandler/UpdateManager/main.cpp
+	<iostream>
+	<string>
+	"UpdateManager.h"
+
+1554962594 source:/home/myubuntu/git/EventHandler/UpdateManager/src/UpdateEngine.cpp
+	"UpdateEngine.h"
+	<iostream>
+
+1554962573 /home/myubuntu/git/EventHandler/UpdateManager/include/UpdateEngine.h
+	<string>
+
+1554974220 source:/home/myubuntu/git/EventHandler/UpdateManager/src/umTimer.cpp
+	"umTimer.h"
+	<signal.h>
+	<sys/time.h>
+	<unistd.h>
+
+1554974713 /home/myubuntu/git/EventHandler/UpdateManager/include/umTimer.h
+	<functional>
+	<thread>
+	"umObject.h"
+
+1554967456 /home/myubuntu/git/EventHandler/UpdateManager/include/umObject.h
+
+1554973704 source:/home/myubuntu/git/EventHandler/UpdateManager/src/UpdateManager.cpp
+	"UpdateManager.h"
+	<functional>
+	<thread>
+	<assert.h>
+
+1554974737 /home/myubuntu/git/EventHandler/UpdateManager/include/UpdateManager.h
+	<string>
+	<thread>
+	"UpdateEngine.h"
+	"umObject.h"
+	"umTimer.h"
+
