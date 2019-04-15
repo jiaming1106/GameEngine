@@ -3,30 +3,30 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-umTimer::umTimer()
+um::Timer::Timer()
 {
     //ctor
     run = false;
 }
 
-umTimer::~umTimer()
+um::Timer::~Timer()
 {
     //dtor
 }
 
-void umTimer::SetTimer(int interval, std::function<void()>func)
+void um::Timer::SetTimer(int interval, std::function<void()>func)
 {
     task = func;
     delta = interval;
 }
 
-void umTimer::Start()
+void um::Timer::Start()
 {
     run = true;
     _run_task();
 }
 
-void umTimer::_run_task()
+void um::Timer::_run_task()
 {
     std::thread t1([this](){
                     std::this_thread::sleep_for(std::chrono::milliseconds(this->delta));
@@ -38,13 +38,13 @@ void umTimer::_run_task()
     if(run) t1.detach();
 }
 
-void umTimer::Pause()
+void um::Timer::Pause()
 {
     run = false;
     //TODO :: get the second and continue to the right second
 }
 
-void umTimer::Stop()
+void um::Timer::Stop()
 {
     run = false;
 }

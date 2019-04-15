@@ -13,7 +13,12 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-lpthread" />
+					<Add directory="include" />
 				</Compiler>
+				<Linker>
+					<Add option="-lpthread" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/UpdateManager" prefix_auto="1" extension_auto="1" />
@@ -22,9 +27,12 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-lpthread" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lpthread" />
 				</Linker>
 			</Target>
 		</Build>
@@ -32,7 +40,29 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/MoveDecision.h" />
+		<Unit filename="include/ShootDecision.h" />
+		<Unit filename="include/interface.h" />
+		<Unit filename="include/umAction.h" />
+		<Unit filename="include/umDecision.h" />
+		<Unit filename="include/umDecisionFactory.h" />
+		<Unit filename="include/umMarco.h" />
+		<Unit filename="include/umRules.h" />
+		<Unit filename="include/umSingleton.h" />
+		<Unit filename="include/umTimer.h" />
+		<Unit filename="include/umUpdateEngine.h" />
+		<Unit filename="include/umUpdateManager.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/MoveDecision.cpp" />
+		<Unit filename="src/ShootDecision.cpp" />
+		<Unit filename="src/interface.cpp" />
+		<Unit filename="src/umAction.cpp" />
+		<Unit filename="src/umDecision.cpp" />
+		<Unit filename="src/umDecisionFactory.cpp" />
+		<Unit filename="src/umRules.cpp" />
+		<Unit filename="src/umTimer.cpp" />
+		<Unit filename="src/umUpdateEngine.cpp" />
+		<Unit filename="src/umUpdateManager.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

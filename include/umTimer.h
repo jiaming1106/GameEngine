@@ -3,38 +3,42 @@
 
 #include <functional>
 #include <thread>
-#include "umObject.h"
+
 using namespace std;
 
-class umTimer
+namespace um
 {
-    public:
+    class Timer
+    {
+        public:
 
-        umTimer();
+            Timer();
 
-        ~umTimer();
+            ~Timer();
 
-        void SetTimer(int interval, std::function<void()> func);
+            void SetTimer(int interval, std::function<void()> func);
 
-        void Start();
+            void Start();
 
-        void Pause();
+            void Pause();
 
-        void Stop();
+            void Stop();
 
-    private:
+        private:
 
-        void _run_task();
+            void _run_task();
 
-    protected:
+        protected:
 
-    private:
+        private:
 
-        bool run;
+            bool run;
 
-        std::function<void()> task;
+            std::function<void()> task;
 
-        int delta;
-};
+            int delta;
+    };
+}
+
 
 #endif // UMTIMER_H
