@@ -1,4 +1,5 @@
 #include "umUpdateEngine.h"
+#include <umMarco.h>
 #include <iostream>
 
 using namespace std;
@@ -23,7 +24,7 @@ void um::UpdateEngine::world_update()
 
 void um::UpdateEngine::action_update(Action action)
 {
-    //cout<<"Engine : Player "<<action<<endl;
     cout<<"Engine : Player "<<endl;
+    //InsTaskList tl = action.get
     world_update();
 }

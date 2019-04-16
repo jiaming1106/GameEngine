@@ -1,7 +1,11 @@
 #ifndef UMACTION_H
 #define UMACTION_H
 
+#include <functional>
+#include <vector>
 #include "umMarco.h"
+
+using namespace std;
 
 namespace um
 {
@@ -14,6 +18,7 @@ namespace um
         protected:
 
         private:
+            InsTaskList tasks;
     };
 }
 

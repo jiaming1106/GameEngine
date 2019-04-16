@@ -24,7 +24,7 @@ class interface
 
         shared_ptr<Decision> _map(const UsrInput input);
 
-        DecisionType getDecisionType(const UsrInput input);
+        DecisionType _getDecisionType(const UsrInput input);
 
     private:
 

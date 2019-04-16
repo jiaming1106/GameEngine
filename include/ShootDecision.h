@@ -18,7 +18,7 @@ class ShootDecision : public Decision
 
         bool check();
 
-        bool exec(vector<Action> &act_list);
+        void genAction(vector<Action> &act_list);
 
     protected:
 

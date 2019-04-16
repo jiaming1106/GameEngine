@@ -13,11 +13,16 @@ MoveDecision::~MoveDecision()
 
 bool MoveDecision::check()
 {
+    /**< TODO : Select check rules from rules library*/
+    /**< write the hard rules first
+    then change it into config files*/
+
     return true;
 }
 
-bool MoveDecision::exec(vector<Action>& act_list)
+void MoveDecision::genAction(vector<Action>& act_list)
 {
-    cout<<"Decision : Move"<<endl;
-    return true;
+    /**< TODO : Select meta act from action library*/
+    cout<<"Decision - Move : exec"<<endl;
+
 }

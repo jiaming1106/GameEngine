@@ -33,7 +33,7 @@ namespace um
              * \return
              *
              */
-            virtual bool exec(vector<Action> &act_list) = 0;
+            virtual void genAction(vector<Action> &act_list) = 0;
 
         protected:
 
