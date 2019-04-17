@@ -15,8 +15,7 @@ namespace um
         {
             TYPE_INT,
             TYPE_FLOAT,
-            TYPE_BOOL,
-            TYPE_STRING
+            TYPE_BOOL
         };
 
         explicit Variant(Type tt) : m_type(tt) {}
@@ -29,13 +28,12 @@ namespace um
             int m_asInt;
             float m_asFloat;
             bool m_asBool;
-            string m_asString;
         };
     };
 
     typedef string UsrInput;
     typedef string DecisionType;
-    typedef string EventType;
+    typedef string ActionType;
     typedef unsigned int Position;
     typedef unsigned int OperatorHandle;
     typedef vector<function<void()>> InsTaskList;
@@ -57,6 +55,7 @@ namespace um
         }\
     };\
     decisionType##Helper decisionType##helper;
+
 }
 
 #endif // MARCO_H

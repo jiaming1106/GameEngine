@@ -10,7 +10,7 @@ int main()
     string in;
     interface game;
     while(1){
-        cin >> in;
+        getline(cin,in);
         game.input(in);
     }
     return 0;

@@ -1,16 +1,19 @@
 #include "interface.h"
 #include "umAction.h"
 #include "umDecisionFactory.h"
-#include "MoveDecision.h"
-#include "ShootDecision.h"
+#include "umEvent.h"
+
 #include <vector>
 #include <iostream>
+#include <sstream>
+
+#include "MoveDecision.h"
+#include "ShootDecision.h"
 
 using namespace um;
 
 interface::interface()
 {
-    //ctor
     /**< TODO : init from a config files AND
     move to a new class to keep the interface clean*/
     REGISTERDECISION(MoveDecision);
@@ -19,25 +22,22 @@ interface::interface()
 
 interface::~interface()
 {
-    //dtor
+
 }
 
 void interface::input(UsrInput input)
 {
     shared_ptr<Decision> dec = _map(input);
     if(dec){
+        /**< CHECK */
         if(dec->check()){
-            vector<Action> act_list;
-            dec->genAction(act_list);
-            /**<  TODO : push into UpdateManager one by one or a list? */
+            Event dev_ev = dec->genEvent();
+            /**< SEND */
+            m_um.onEvent(dev_ev);
         }else{
-
+            cout<<"Game : Decision violate some rules."<<endl;
         }
     }
-    else{
-        cout<<"Game : Unsupported User Input"<<endl;
-    }
-
 }
 
 shared_ptr<Decision> interface::_map(const UsrInput usr_input)
@@ -58,11 +58,28 @@ DecisionType interface::_getDecisionType(const UsrInput input)
     /**< TODO : Read Type From Input */
     /**< Maybe Map from a unified config file as the Register*/
     /**< MakeSure the MAP the same as the RegisterClass */
-    if(!input.compare("1"))
-        dt = "MoveDecision";
-    else if(!input.compare("2"))
-        dt = "ShootDecision";
-
+    /**< BAD CODING */
+    if(input.at(0)=='-'){
+        if (!input.compare("-s")){
+            m_um.onStart();
+            cout<<"GAME START"<<endl;
+        }else if (!input.compare("-p")){
+            m_um.onPause();
+            cout<<"GAME Pause"<<endl;
+        }else if (!input.compare("-q")){
+            m_um.onStop();
+            cout<<"GAME OVER"<<endl;
+        }
+    }else{
+        stringstream ss(input);
+        string buf;
+        ss>>buf;
+        /**< Maybe MAP better */
+        if(!buf.compare("mov"))
+            dt = "MoveDecision";
+        else if(!buf.compare("att"))
+            dt = "ShootDecision";
+    }
     return dt;
 }
 

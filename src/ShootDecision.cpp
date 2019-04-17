@@ -1,5 +1,8 @@
 #include "ShootDecision.h"
+#include "umAction.h"
+#include "umEvent.h"
 #include <iostream>
+#include <sstream>
 
 ShootDecision::ShootDecision()
 {
@@ -16,17 +19,34 @@ bool ShootDecision::check()
     /**< TODO : Select check rules from rules library*/
     /**< write the hard rules first
     then change it into config files*/
-
+    stringstream ss(m_command);
+    string buf;
+    /**< DANGEROUS */
+    ss>>buf;
+    ss>>m_bop_att;
+    ss>>m_bop_obj;
+    /**< there needs a judge */
+    m_damage = 1;
     return true;
 }
 
-void ShootDecision::genAction(vector<Action>& act_list)
+Event ShootDecision::genEvent()
 {
-    /**< TODO : Select meta act from action library*/
-    cout<<"Decision - Shoot : exec"<<endl;
+    Action act1(ActionType("SHOOT"));
     um::Variant arg1(um::Variant::TYPE_INT);
-    arg1.m_asInt = 65;
-    um::Variant arg2(um::Variant::TYPE_FLOAT);
-    arg2.m_asFloat = 32.5;
-    cout<<"Shoot Event : "<<arg1.m_asInt<<" "<<arg2.m_asFloat<<endl;
+    arg1.m_asInt = m_bop_att;
+    act1.addArg(arg1);
+
+    Action act2(ActionType("INJURY"));
+    um::Variant arg2(um::Variant::TYPE_INT);
+    arg2.m_asInt = m_bop_obj;
+    act2.addArg(arg2);
+    um::Variant arg3(um::Variant::TYPE_INT);
+    arg3.m_asInt = m_damage;
+    act2.addArg(arg3);
+
+    Event sht_ev(act1);
+    sht_ev.addAction(act2);
+
+    return sht_ev;
 }

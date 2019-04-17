@@ -1,4 +1,6 @@
 #include "umOperator.h"
+#include <iostream>
+using namespace std;
 
 um::Operator::Operator()
 {
@@ -8,4 +10,9 @@ um::Operator::Operator()
 um::Operator::~Operator()
 {
     //dtor
+}
+
+void um::Operator::onAction(Action act)
+{
+
 }

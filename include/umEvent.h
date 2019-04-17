@@ -2,21 +2,29 @@
 #define UMEVENT_H
 
 #include <umMarco.h>
+#include <umAction.h>
 #include <vector>
 using namespace std;
 
 namespace um
 {
+    /**< the message Decision send to Engine */
     class Event
     {
         public:
             Event();
-            virtual ~Event();
+            Event(const Action act);
+            ~Event();
 
         public:
-            /**< TODO : Change the class of type to int supported by DB */
-            EventType m_type;
-            vector<Variant> m_args;
+            void addAction(const Action act);
+
+            Action action(int i);
+
+            int actionNum();
+
+        private:
+            vector<Action> m_act;
     };
 }
 

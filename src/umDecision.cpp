@@ -20,3 +20,8 @@ void um::Decision::setCommand(UsrInput in)
 {
     m_command = in;
 }
+
+um::UsrInput um::Decision::command()
+{
+    return m_command;
+}

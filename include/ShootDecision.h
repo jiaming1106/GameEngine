@@ -18,7 +18,7 @@ class ShootDecision : public Decision
 
         bool check();
 
-        void genAction(vector<Action> &act_list);
+        Event genEvent();
 
     protected:
 

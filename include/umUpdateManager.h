@@ -6,7 +6,7 @@
 
 #include "umUpdateEngine.h"
 #include "umTimer.h"
-#include "umAction.h"
+#include "umEvent.h"
 
 using namespace std;
 
@@ -20,21 +20,19 @@ namespace um
 
             ~UpdateManager();
 
-            void loop_start();
+            void onStart();
 
-            void loop_pause();
+            void onPause();
 
-            void loop_stop();
+            void onStop();
 
-            void update(Action action);
-
-        protected:
+            void onEvent(const Event ev);
 
         private:
 
             void _world_update();
 
-            void _action_update(Action action);
+            void _action_update(Event ev);
 
         private:
 

@@ -18,13 +18,13 @@ class MoveDecision : public Decision
 
         bool check();
 
-        void genAction(vector<Action> &act_list);
+        Event genEvent();
 
     protected:
 
     private:
         OperatorHandle m_move_bop;
-        vector<Position> m_move_path;
+        Position m_move_path;
 
 };
 

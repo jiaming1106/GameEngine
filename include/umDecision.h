@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include "umAction.h"
+#include "umEvent.h"
 #include "umMarco.h"
 
 namespace um
@@ -33,11 +33,10 @@ namespace um
              * \return
              *
              */
-            virtual void genAction(vector<Action> &act_list) = 0;
+            virtual Event genEvent() = 0;
 
+            UsrInput command();
         protected:
-
-        private:
             UsrInput m_command;
     };
 }

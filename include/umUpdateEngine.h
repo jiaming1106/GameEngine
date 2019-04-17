@@ -2,7 +2,10 @@
 #define UPDATEENGINE_H
 
 #include <string>
-#include <umAction.h>
+#include <memory>
+#include <vector>
+#include "umAction.h"
+#include "umOperator.h"
 
 namespace um
 {
@@ -14,11 +17,12 @@ namespace um
 
             void world_update();
 
-            void action_update(Action action);
+            void action_update(Action act);
 
         protected:
 
         private:
+            vector<shared_ptr<Operator>> m_op_list;
             double m_worldstep;
     };
 }

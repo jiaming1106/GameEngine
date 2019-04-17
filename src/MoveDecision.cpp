@@ -1,5 +1,8 @@
 #include "MoveDecision.h"
+#include "umEvent.h"
+#include "umAction.h"
 #include <iostream>
+#include <sstream>
 
 MoveDecision::MoveDecision()
 {
@@ -16,13 +19,31 @@ bool MoveDecision::check()
     /**< TODO : Select check rules from rules library*/
     /**< write the hard rules first
     then change it into config files*/
-
+    stringstream ss(m_command);
+    string buf;
+    /**< Really NOT SAFE */
+    ss>>buf;
+    ss>>m_move_bop;
+    ss>>m_move_path;
     return true;
 }
 
-void MoveDecision::genAction(vector<Action>& act_list)
+Event MoveDecision::genEvent()
 {
-    /**< TODO : Select meta act from action library*/
-    cout<<"Decision - Move : exec"<<endl;
+//define action type
+    Action mv_act(ActionType("MOVE"));
 
+//add action arguments
+    um::Variant arg1(um::Variant::TYPE_INT);
+    arg1.m_asInt = m_move_bop;
+    mv_act.addArg(arg1);
+
+    um::Variant arg2(um::Variant::TYPE_INT);
+    arg2.m_asInt = m_move_path;
+    mv_act.addArg(arg2);
+
+//generate event
+    Event mv_ev(mv_act);
+
+    return mv_ev;
 }
