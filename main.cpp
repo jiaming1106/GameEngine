@@ -9,6 +9,7 @@ int main()
 {
     string in;
     interface game;
+    cout<<"HELLO GAME"<<endl;
     while(1){
         getline(cin,in);
         game.input(in);

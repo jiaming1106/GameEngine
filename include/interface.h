@@ -1,9 +1,9 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include "umMarco.h"
-#include "umUpdateManager.h"
-#include "umDecision.h"
+#include <um/Marco.h>
+#include <um/UpdateManager.h>
+#include <um/Decision.h>
 #include <memory>
 
 using namespace std;

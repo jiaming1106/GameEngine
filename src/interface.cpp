@@ -1,14 +1,15 @@
 #include "interface.h"
-#include "umAction.h"
-#include "umDecisionFactory.h"
-#include "umEvent.h"
+#include <um/Action.h>
+#include <um/DecisionFactory.h>
+#include <um/Event.h>
 
 #include <vector>
 #include <iostream>
 #include <sstream>
 
-#include "MoveDecision.h"
-#include "ShootDecision.h"
+#include <decision/MoveDecision.h>
+#include <decision/ShootDecision.h>
+#include <decision/StopDecision.h>
 
 using namespace um;
 
@@ -18,6 +19,7 @@ interface::interface()
     move to a new class to keep the interface clean*/
     REGISTERDECISION(MoveDecision);
     REGISTERDECISION(ShootDecision);
+    REGISTERDECISION(StopDecision);
 }
 
 interface::~interface()
@@ -60,6 +62,7 @@ DecisionType interface::_getDecisionType(const UsrInput input)
     /**< MakeSure the MAP the same as the RegisterClass */
     /**< BAD CODING */
     if(input.at(0)=='-'){
+        /**< Maybe MAP is better */
         if (!input.compare("-s")){
             m_um.onStart();
             cout<<"GAME START"<<endl;
@@ -74,11 +77,13 @@ DecisionType interface::_getDecisionType(const UsrInput input)
         stringstream ss(input);
         string buf;
         ss>>buf;
-        /**< Maybe MAP better */
+        /**< Maybe MAP is better */
         if(!buf.compare("mov"))
             dt = "MoveDecision";
         else if(!buf.compare("att"))
             dt = "ShootDecision";
+        else if(!buf.compare("stop"))
+            dt = "StopDecision";
     }
     return dt;
 }
