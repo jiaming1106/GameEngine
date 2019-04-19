@@ -44,13 +44,13 @@ bool ShootDecision::_parse()
 Event ShootDecision::genEvent()
 {
     Action act1(ActionType("SHOOT"));
-    um::Variant arg1(um::Variant::TYPE_INT);
-    arg1.m_asInt = m_bop_att;
+    um::Variant arg1(um::Variant::TYPE_HANDLE);
+    arg1.m_asHandle = m_bop_att;
     act1.addArg(arg1);
 
     Action act2(ActionType("INJURY"));
-    um::Variant arg2(um::Variant::TYPE_INT);
-    arg2.m_asInt = m_bop_obj;
+    um::Variant arg2(um::Variant::TYPE_HANDLE);
+    arg2.m_asHandle = m_bop_obj;
     act2.addArg(arg2);
     um::Variant arg3(um::Variant::TYPE_INT);
     arg3.m_asInt = m_damage;

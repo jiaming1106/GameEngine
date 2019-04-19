@@ -15,7 +15,8 @@ namespace um
         {
             TYPE_INT,
             TYPE_FLOAT,
-            TYPE_BOOL
+            TYPE_BOOL,
+            TYPE_HANDLE
         };
 
         explicit Variant(Type tt) : m_type(tt) {}
@@ -28,6 +29,7 @@ namespace um
             int m_asInt;
             float m_asFloat;
             bool m_asBool;
+            unsigned int m_asHandle;
         };
     };
 

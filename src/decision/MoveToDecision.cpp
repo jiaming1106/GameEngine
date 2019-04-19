@@ -1,20 +1,20 @@
-#include <decision/MoveDecision.h>
+#include "MoveToDecision.h"
 #include <um/Event.h>
 #include <um/Action.h>
 #include <iostream>
 #include <sstream>
 
-MoveDecision::MoveDecision()
+MoveToDecision::MoveToDecision()
 {
     //ctor
 }
 
-MoveDecision::~MoveDecision()
+MoveToDecision::~MoveToDecision()
 {
     //dtor
 }
 
-bool MoveDecision::check()
+bool MoveToDecision::check()
 {
     /**< TODO : Select check rules from rules library*/
     /**< write the hard rules first
@@ -26,24 +26,12 @@ bool MoveDecision::check()
     {
         return false;
     }
-
 }
 
-bool MoveDecision::_parse()
-{
-    stringstream ss(m_command);
-    string buf;
-    /**< Really NOT SAFE */
-    ss>>buf;
-    ss>>m_move_bop;
-    ss>>m_move_path;
-    return true;
-}
-
-Event MoveDecision::genEvent()
+Event MoveToDecision::genEvent()
 {
 //define action type
-    Action mv_act(ActionType("MOVE"));
+    Action mv_act(ActionType("MOVETO"));
 
 //add action arguments
     um::Variant arg1(um::Variant::TYPE_HANDLE);
@@ -58,4 +46,15 @@ Event MoveDecision::genEvent()
     Event mv_ev(mv_act);
 
     return mv_ev;
+}
+
+bool MoveToDecision::_parse()
+{
+    stringstream ss(m_command);
+    string buf;
+    /**< Really NOT SAFE */
+    ss>>buf;
+    ss>>m_move_bop;
+    ss>>m_move_path;
+    return true;
 }

@@ -36,7 +36,7 @@ namespace um
 
         private:
 
-            const int m_fps = 30;
+            const float m_fps = 0.25;
 
             UpdateEngine m_engine;
 

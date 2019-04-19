@@ -21,11 +21,11 @@ class Tank : public um::Operator
 
         void onAction(Action act);
 
-        void onUpdate(float dt);
+        int onUpdate(float dt);
 
     private:
         unsigned int m_player;
-        unsigned int m_blood;
+        int m_blood;
         float m_v;
         Position m_pos;
         int m_desti;

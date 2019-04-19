@@ -16,7 +16,7 @@ namespace um
             virtual void onAction(Action act);
 
             /**< to response World Update */
-            virtual void onUpdate(float dt);
+            virtual int onUpdate(float dt);
     };
 }
 

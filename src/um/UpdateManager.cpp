@@ -3,6 +3,7 @@
 #include <functional>
 #include <assert.h>
 
+
 using namespace um;
 
 um::UpdateManager::UpdateManager()
@@ -17,7 +18,7 @@ um::UpdateManager::~UpdateManager()
 
 void um::UpdateManager::onStart()
 {
-    int msec = 3000;
+    int msec = 1000/m_fps;
     m_timer.SetTimer(msec,std::bind(&um::UpdateManager::_world_update,this,placeholders::_1));
     m_timer.Start();
 }
@@ -45,5 +46,5 @@ void um::UpdateManager::_world_update(float dt)
 void um::UpdateManager::_action_update(Event ev)
 {
     for(int i=0;i<ev.actionNum();i++)
-        m_engine.action_update(ev.action(i));
+        m_engine.action_update(ev.action(i));\
 }

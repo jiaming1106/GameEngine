@@ -1,11 +1,12 @@
 #ifndef UPDATEENGINE_H
 #define UPDATEENGINE_H
 
-#include <string>
-#include <memory>
-#include <vector>
+#include <um/Marco.h>
 #include <um/Action.h>
 #include <um/Operator.h>
+#include <string>
+#include <memory>
+#include <map>
 
 namespace um
 {
@@ -19,10 +20,14 @@ namespace um
 
             void action_update(Action act);
 
-        protected:
+        private:
+            bool _insert(OperatorHandle op_h, shared_ptr<Operator> op);
+
+            void _del(OperatorHandle op_h);
 
         private:
-            vector<shared_ptr<Operator>> m_op_list;
+            map<OperatorHandle, shared_ptr<Operator>> m_op_list;
+
             double m_worldstep;
     };
 }

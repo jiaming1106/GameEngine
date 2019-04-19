@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="UpdateManager" />
+		<Option title="Game" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -15,6 +15,7 @@
 					<Add option="-g" />
 					<Add option="-lpthread" />
 					<Add directory="include" />
+					<Add directory="include/decision" />
 				</Compiler>
 				<Linker>
 					<Add option="-lpthread" />
@@ -29,6 +30,7 @@
 					<Add option="-O2" />
 					<Add option="-lpthread" />
 					<Add directory="include" />
+					<Add directory="include/decision" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -41,6 +43,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/decision/MoveDecision.h" />
+		<Unit filename="include/decision/MoveToDecision.h" />
 		<Unit filename="include/decision/ShootDecision.h" />
 		<Unit filename="include/decision/StopDecision.h" />
 		<Unit filename="include/interface.h" />
@@ -49,6 +52,7 @@
 		<Unit filename="include/um/Decision.h" />
 		<Unit filename="include/um/DecisionFactory.h" />
 		<Unit filename="include/um/Event.h" />
+		<Unit filename="include/um/GameWorld.h" />
 		<Unit filename="include/um/Marco.h" />
 		<Unit filename="include/um/Operator.h" />
 		<Unit filename="include/um/Rules.h" />
@@ -59,20 +63,22 @@
 		<Unit filename="include/um/UpdateManager.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/decision/MoveDecision.cpp" />
+		<Unit filename="src/decision/MoveToDecision.cpp" />
 		<Unit filename="src/decision/ShootDecision.cpp" />
 		<Unit filename="src/decision/StopDecision.cpp" />
 		<Unit filename="src/interface.cpp" />
 		<Unit filename="src/operator/Tank.cpp" />
-		<Unit filename="src/um/umAction.cpp" />
-		<Unit filename="src/um/umDecision.cpp" />
-		<Unit filename="src/um/umDecisionFactory.cpp" />
-		<Unit filename="src/um/umEvent.cpp" />
-		<Unit filename="src/um/umOperator.cpp" />
-		<Unit filename="src/um/umRules.cpp" />
-		<Unit filename="src/um/umState.cpp" />
-		<Unit filename="src/um/umTimer.cpp" />
-		<Unit filename="src/um/umUpdateEngine.cpp" />
-		<Unit filename="src/um/umUpdateManager.cpp" />
+		<Unit filename="src/um/Action.cpp" />
+		<Unit filename="src/um/Decision.cpp" />
+		<Unit filename="src/um/DecisionFactory.cpp" />
+		<Unit filename="src/um/Event.cpp" />
+		<Unit filename="src/um/GameWorld.cpp" />
+		<Unit filename="src/um/Operator.cpp" />
+		<Unit filename="src/um/Rules.cpp" />
+		<Unit filename="src/um/State.cpp" />
+		<Unit filename="src/um/Timer.cpp" />
+		<Unit filename="src/um/UpdateEngine.cpp" />
+		<Unit filename="src/um/UpdateManager.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

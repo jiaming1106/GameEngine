@@ -17,7 +17,7 @@ void um::Operator::onAction(Action act)
 
 }
 
-void um::Operator::onUpdate(float dt)
+int um::Operator::onUpdate(float dt)
 {
-
+    return 1;
 }
