@@ -19,7 +19,7 @@ class Tank : public um::Operator
         Tank(unsigned int pl, unsigned int b, um::Position po);
         ~Tank();
 
-        void onAction(Action act);
+        int onAction(Action act);
 
         int onUpdate(float dt);
 
@@ -31,17 +31,17 @@ class Tank : public um::Operator
         int m_desti;
 
     private:
-        map<string, function<void(Action&)>> m_map_act;
+        map<string, function<int(Action&)>> m_map_act;
         map<string, shared_ptr<State>> m_map_update;
         void _bind_act();
 
     private:
-        void onMove(Action &act);
-        void onMoveTo(Action &act);
-        void onShoot(Action &act);
-        void onInjury(Action &act);
-        void onStop(Action &act);
-        void onMoving(float dt);
+        int onMove(Action &act);
+        int onMoveTo(Action &act);
+        int onShoot(Action &act);
+        int onInjury(Action &act);
+        int onStop(Action &act);
+        int onMoving(float dt);
         int isGetP();
 };
 

@@ -1,14 +1,15 @@
 #include <um/UpdateManager.h>
-
+#include <um/GameWorld.h>
 #include <functional>
 #include <assert.h>
-
 
 using namespace um;
 
 um::UpdateManager::UpdateManager()
 {
     //ctor
+    shared_ptr<GameWorld> world(new GameWorld());
+    m_engine = make_shared<UpdateEngine>(world);
 }
 
 um::UpdateManager::~UpdateManager()
@@ -40,11 +41,11 @@ void um::UpdateManager::onEvent(const Event ev)
 
 void um::UpdateManager::_world_update(float dt)
 {
-    m_engine.world_update(dt);
+    m_engine->world_update(dt);
 }
 
 void um::UpdateManager::_action_update(Event ev)
 {
     for(int i=0;i<ev.actionNum();i++)
-        m_engine.action_update(ev.action(i));\
+        m_engine->action_update(ev.action(i));\
 }

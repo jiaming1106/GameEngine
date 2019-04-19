@@ -29,7 +29,7 @@ namespace um
             int m_asInt;
             float m_asFloat;
             bool m_asBool;
-            unsigned int m_asHandle;
+            int m_asHandle;
         };
     };
 

@@ -9,7 +9,7 @@ int main()
 {
     string in;
     interface game;
-    cout<<"HELLO GAME"<<endl;
+    cout<<"\033[33mHELLO GAME\033[0m"<<endl;
     while(1){
         getline(cin,in);
         game.input(in);

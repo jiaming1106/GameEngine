@@ -12,10 +12,22 @@ namespace um
 
             virtual ~Operator();
 
-            /**< to response different action */
-            virtual void onAction(Action act);
+            /** \brief to response different action
+             *
+             * \param
+             * \param
+             * \return 1 - need to be update
+             *         0 - just instantaneous action
+             */
+            virtual int onAction(Action act);
 
-            /**< to response World Update */
+            /** \brief to response World Update
+             *
+             * \param
+             * \param
+             * \return 1 - still need update
+             *         0 - died
+             */
             virtual int onUpdate(float dt);
     };
 }

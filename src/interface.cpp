@@ -11,6 +11,7 @@
 #include <decision/ShootDecision.h>
 #include <decision/StopDecision.h>
 #include <decision/MoveToDecision.h>
+#include <decision/MissileDecision.h>
 
 using namespace um;
 
@@ -22,6 +23,7 @@ interface::interface()
     REGISTERDECISION(ShootDecision);
     REGISTERDECISION(StopDecision);
     REGISTERDECISION(MoveToDecision);
+    REGISTERDECISION(MissileDecision);
 }
 
 interface::~interface()
@@ -68,6 +70,7 @@ DecisionType interface::_getDecisionType(const UsrInput input)
     /**< BAD CODING */
     if(input.empty()) return dt;
     if(input.at(0)=='-'){
+        cout<<"\033[33m";
         /**< Maybe MAP is better */
         if (!input.compare("-s")){
             m_um.onStart();
@@ -79,6 +82,7 @@ DecisionType interface::_getDecisionType(const UsrInput input)
             m_um.onStop();
             cout<<"GAME OVER"<<endl;
         }
+    cout<<"\033[0m";
     }else{
         stringstream ss(input);
         string buf;
@@ -88,6 +92,8 @@ DecisionType interface::_getDecisionType(const UsrInput input)
             dt = "MoveDecision";
         else if(!buf.compare("att"))
             dt = "ShootDecision";
+        else if(!buf.compare("attl"))
+            dt = "MissileDecision";
         else if(!buf.compare("stop"))
             dt = "StopDecision";
         else if(!buf.compare("movt"))

@@ -42,6 +42,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/decision/MissileDecision.h" />
 		<Unit filename="include/decision/MoveDecision.h" />
 		<Unit filename="include/decision/MoveToDecision.h" />
 		<Unit filename="include/decision/ShootDecision.h" />
@@ -62,6 +63,7 @@
 		<Unit filename="include/um/UpdateEngine.h" />
 		<Unit filename="include/um/UpdateManager.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/decision/MissileDecision.cpp" />
 		<Unit filename="src/decision/MoveDecision.cpp" />
 		<Unit filename="src/decision/MoveToDecision.cpp" />
 		<Unit filename="src/decision/ShootDecision.cpp" />

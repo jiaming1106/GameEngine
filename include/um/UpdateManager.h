@@ -38,7 +38,7 @@ namespace um
 
             const float m_fps = 0.25;
 
-            UpdateEngine m_engine;
+            shared_ptr<UpdateEngine> m_engine;
 
             Timer m_timer;
     };

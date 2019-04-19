@@ -12,9 +12,9 @@ um::Operator::~Operator()
     //dtor
 }
 
-void um::Operator::onAction(Action act)
+int um::Operator::onAction(Action act)
 {
-
+    return 0;
 }
 
 int um::Operator::onUpdate(float dt)

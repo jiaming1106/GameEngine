@@ -4,6 +4,7 @@
 #include <um/Marco.h>
 #include <um/Action.h>
 #include <um/Operator.h>
+#include <um/GameWorld.h>
 #include <string>
 #include <memory>
 #include <map>
@@ -13,22 +14,24 @@ namespace um
     class UpdateEngine
     {
         public:
-            UpdateEngine();
-            virtual ~UpdateEngine();
+
+            UpdateEngine(shared_ptr<GameWorld> ww);
+
+            ~UpdateEngine();
 
             void world_update(float dt);
 
             void action_update(Action act);
 
         private:
-            bool _insert(OperatorHandle op_h, shared_ptr<Operator> op);
+            bool _insert(OperatorHandle op_h);
 
             void _del(OperatorHandle op_h);
 
         private:
-            map<OperatorHandle, shared_ptr<Operator>> m_op_list;
+            shared_ptr<GameWorld> m_world;
 
-            double m_worldstep;
+            map<OperatorHandle, shared_ptr<Operator>> m_op_list;
     };
 }
 
