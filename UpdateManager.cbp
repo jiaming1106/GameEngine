@@ -19,6 +19,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-lpthread" />
+					<Add option="`mysql_config --cflags --libs`" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -35,6 +36,7 @@
 				<Linker>
 					<Add option="-s" />
 					<Add option="-lpthread" />
+					<Add option="`mysql_config --cflags --libs`" />
 				</Linker>
 			</Target>
 		</Build>
@@ -42,17 +44,21 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/SQLInterface.h" />
 		<Unit filename="include/decision/MissileDecision.h" />
 		<Unit filename="include/decision/MoveDecision.h" />
 		<Unit filename="include/decision/MoveToDecision.h" />
 		<Unit filename="include/decision/ShootDecision.h" />
 		<Unit filename="include/decision/StopDecision.h" />
 		<Unit filename="include/interface.h" />
+		<Unit filename="include/operator/Missile.h" />
 		<Unit filename="include/operator/Tank.h" />
 		<Unit filename="include/um/Action.h" />
+		<Unit filename="include/um/ActionHandler.h" />
 		<Unit filename="include/um/Decision.h" />
 		<Unit filename="include/um/DecisionFactory.h" />
 		<Unit filename="include/um/Event.h" />
+		<Unit filename="include/um/EventSender.h" />
 		<Unit filename="include/um/GameWorld.h" />
 		<Unit filename="include/um/Marco.h" />
 		<Unit filename="include/um/Operator.h" />
@@ -63,17 +69,21 @@
 		<Unit filename="include/um/UpdateEngine.h" />
 		<Unit filename="include/um/UpdateManager.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/SQLInterface.cpp" />
 		<Unit filename="src/decision/MissileDecision.cpp" />
 		<Unit filename="src/decision/MoveDecision.cpp" />
 		<Unit filename="src/decision/MoveToDecision.cpp" />
 		<Unit filename="src/decision/ShootDecision.cpp" />
 		<Unit filename="src/decision/StopDecision.cpp" />
 		<Unit filename="src/interface.cpp" />
+		<Unit filename="src/operator/Missile.cpp" />
 		<Unit filename="src/operator/Tank.cpp" />
 		<Unit filename="src/um/Action.cpp" />
+		<Unit filename="src/um/ActionHandler.cpp" />
 		<Unit filename="src/um/Decision.cpp" />
 		<Unit filename="src/um/DecisionFactory.cpp" />
 		<Unit filename="src/um/Event.cpp" />
+		<Unit filename="src/um/EventSender.cpp" />
 		<Unit filename="src/um/GameWorld.cpp" />
 		<Unit filename="src/um/Operator.cpp" />
 		<Unit filename="src/um/Rules.cpp" />

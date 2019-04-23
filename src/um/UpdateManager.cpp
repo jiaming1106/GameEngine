@@ -9,6 +9,16 @@ um::UpdateManager::UpdateManager()
 {
     //ctor
     shared_ptr<GameWorld> world(new GameWorld());
+
+    int num = world->OperatorNum();
+
+    for(int it=0 ; it<num ; it++)
+    {
+        shared_ptr<Operator> tp = (*world)[it];
+        tp->associate(bind(&um::UpdateManager::onEvent,this,placeholders::_1));
+    }
+    world->associate(bind(&um::UpdateManager::onEvent,this,placeholders::_1));
+
     m_engine = make_shared<UpdateEngine>(world);
 }
 
@@ -34,6 +44,7 @@ void um::UpdateManager::onStop()
     m_timer.Stop();
 }
 
+/**< need a MQ to handle so many events */
 void um::UpdateManager::onEvent(const Event ev)
 {
     _action_update(ev);
@@ -47,5 +58,5 @@ void um::UpdateManager::_world_update(float dt)
 void um::UpdateManager::_action_update(Event ev)
 {
     for(int i=0;i<ev.actionNum();i++)
-        m_engine->action_update(ev.action(i));\
+        m_engine->action_update(ev.action(i));
 }

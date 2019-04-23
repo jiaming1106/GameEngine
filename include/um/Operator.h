@@ -2,24 +2,20 @@
 #define UMOPERATOR_H
 
 #include <um/Action.h>
+#include <um/ActionHandler.h>
+#include <um/EventSender.h>
 
 namespace um
 {
-    class Operator
+    class Operator : public ActionHandler, public EventSender
     {
         public:
             Operator();
 
-            virtual ~Operator();
+            /**< TODO : NOT a general constructor */
+            Operator(OperatorHandle oh, unsigned int pl, unsigned int b, um::Position po, std::string name = "Operator");
 
-            /** \brief to response different action
-             *
-             * \param
-             * \param
-             * \return 1 - need to be update
-             *         0 - just instantaneous action
-             */
-            virtual int onAction(Action act);
+            virtual ~Operator();
 
             /** \brief to response World Update
              *
@@ -29,6 +25,23 @@ namespace um
              *         0 - died
              */
             virtual int onUpdate(float dt);
+
+        protected:
+            /**< TODO : HOW to manage these property better and more flexible*/
+            OperatorHandle m_handle;
+            unsigned int m_player;
+            int m_blood;
+            Position m_pos;
+            int m_type;
+            std::string m_name;
+
+        public:
+            unsigned int getPlayer();
+            Position getPosition();
+            OperatorHandle getHandle();
+            int getBlood();
+            int getType();
+
     };
 }
 

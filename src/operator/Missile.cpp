@@ -1,44 +1,45 @@
-#include <operator/Tank.h>
+#include <operator/Missile.h>
 #include <functional>
 #include <iostream>
 
-using namespace std;
 using namespace um;
+using namespace std;
 using namespace std::placeholders;
 
-Tank::Tank()
+Missile::Missile()
 {
     _init_bind();
 }
 
-Tank::~Tank()
+Missile::~Missile()
 {
-
+    //dtor
 }
 
-Tank::Tank(OperatorHandle oh, unsigned int pl, unsigned int b, um::Position po) :
-    Operator(oh,pl,b,po,"Tank")
+Missile::Missile(OperatorHandle oh, unsigned int pl, um::Position po) :
+    Operator(oh,pl,1,po,"Missile")
 {
-    m_type = 0;
+    m_type = 1;
     _init_bind();
+    m_lifetime = 10.0;
 }
 
-void Tank::_init_bind()
+void Missile::_init_bind()
 {
-    _bind_act("STOP",bind(&Tank::onStop,this,_1));
-    _bind_act("MOVE",bind(&Tank::onMove,this,_1));
-    _bind_act("SHOOT",bind(&Tank::onShoot,this,_1));
-    _bind_act("INJURY",bind(&Tank::onInjury,this,_1));
-    _bind_act("MOVETO",bind(&Tank::onMoveTo,this,_1));
-    _bind_act("LINKOP",bind(&Tank::onLink,this,_1));
+    _bind_act("STOP",bind(&Missile::onStop,this,_1));
+    _bind_act("MOVE",bind(&Missile::onMove,this,_1));
+    _bind_act("SHOOT",bind(&Missile::onShoot,this,_1));
+    _bind_act("INJURY",bind(&Missile::onInjury,this,_1));
+    _bind_act("MOVETO",bind(&Missile::onMoveTo,this,_1));
+    _bind_act("DESTROY",bind(&Missile::onDestroy,this,_1));
 }
 
-/**< can be write in the BASE Class */
-int Tank::onUpdate(float dt)
+int Missile::onUpdate(float dt)
 {
-    if(m_blood<1)
+    m_lifetime -= dt;
+    if(m_blood<1 || m_lifetime<0)
     {
-        cout<<"\033[32mPlayer "<<m_player<<" "<<m_name<<" : Died\033[0m "<<endl;
+        cout<<"\033[32mPlayer "<<m_player<<" "<<m_name<<" : Destroy\033[0m "<<endl;
         return 0;
     }
 
@@ -51,7 +52,6 @@ int Tank::onUpdate(float dt)
         if(ans == 1 ) end_state.push_back(it.first);
         //cout<<"\033[0m"<<endl;
     }
-
     /**< delete the  sustained action WHEN it finished*/
     for(auto et : end_state)
     {
@@ -60,14 +60,14 @@ int Tank::onUpdate(float dt)
 
     if(m_blood<1)
     {
-        cout<<"\033[32mPlayer "<<m_player<<" "<<m_name<<" : Died\033[0m "<<endl;
+        cout<<"\033[32mPlayer "<<m_player<<" "<<m_name<<" : Destroy\033[0m "<<endl;
         return 0;
     }
 
     return 1;
 }
 
-int Tank::onMove(Action& act)
+int Missile::onMove(Action& act)
 {
     cout<<"Player "<<m_player<<" "<<m_name<<" : ";
     Position temp = m_pos;
@@ -76,25 +76,28 @@ int Tank::onMove(Action& act)
     return 0;
 }
 
-int Tank::onMoveTo(Action& act)
+int Missile::onMoveTo(Action& act)
 {
     cout<<"Player "<<m_player<<" "<<m_name<<" : ";
     m_desti = act.arg(1).m_asInt;
     m_v = m_desti > m_pos ? 1 : -1;
-    shared_ptr<State> mt(new State(bind(&Tank::onMoving,this,placeholders::_1), bind(&Tank::isGetP,this)));
+    shared_ptr<State> mt(new State(bind(&Missile::onMoving,this,placeholders::_1), bind(&Missile::isGetP,this)));
     m_map_update.insert(pair<string, shared_ptr<State>>("MOVING",mt));
     cout<<"Start Moving "<<endl;
     return 1;
 }
 
-int Tank::onShoot(Action& act)
+int Missile::onShoot(Action& act)
 {
     cout<<"Player "<<m_player<<" "<<m_name<<" : ";
-    cout<<"Shoot"<<endl;
+    cout<<"Shoot";
+    m_blood = 0;
+    cout <<" & Missile Destroy";
+    cout<<endl;
     return 0;
 }
 
-int Tank::onInjury(Action& act)
+int Missile::onInjury(Action& act)
 {
     cout<<"Player "<<m_player<<" "<<m_name<<" : ";
     unsigned int temp = m_blood;
@@ -102,27 +105,13 @@ int Tank::onInjury(Action& act)
     cout<<"Injury "<<temp<<"-->"<<m_blood;
     /**< TODO : blood < 1 should be del immediately or
     died tank can shoot or move if send the Decision quickly*/
-    if(m_blood < 1){
-        if(!m_link_op.empty())
-        {
-            /**< gen a event of destroy p */
-            Event des_ev;
-            for(auto it : m_link_op)
-            {
-                Action act1(ActionType("DESTROY"));
-                um::Variant arg1(um::Variant::TYPE_HANDLE);
-                arg1.m_asHandle = it;
-                act1.addArg(arg1);
-                des_ev.addAction(act1);
-            }
-            _sendEvent(des_ev);
-        }
-    }
+    if(m_blood < 1)
+        cout <<" Died";
     cout<<endl;
     return 0;
 }
 
-int Tank::onMoving(float dt)
+int Missile::onMoving(float dt)
 {
     //Position temp = m_pos;
     m_pos += dt * m_v;
@@ -130,7 +119,7 @@ int Tank::onMoving(float dt)
     return 1;
 }
 
-int Tank::onStop(Action& act)
+int Missile::onStop(Action& act)
 {
     cout<<"Player "<<m_player<<" "<<m_name<<" : ";
     m_map_update.erase("MOVING");
@@ -138,7 +127,7 @@ int Tank::onStop(Action& act)
     return 0;
 }
 
-int Tank::isGetP()
+int Missile::isGetP()
 {
     if((m_desti - m_pos)*m_v <= 0){
         return 1;
@@ -147,12 +136,10 @@ int Tank::isGetP()
     }
 }
 
-
-int Tank::onLink(Action& act)
+int Missile::onDestroy(Action& act)
 {
-    m_link_op.push_back(act.arg(1).m_asHandle);
+    m_blood = 0;
     return 0;
 }
-
 
 

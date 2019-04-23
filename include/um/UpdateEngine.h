@@ -9,6 +9,8 @@
 #include <memory>
 #include <map>
 
+#include <SQLInterface.h>
+
 namespace um
 {
     class UpdateEngine
@@ -19,19 +21,15 @@ namespace um
 
             ~UpdateEngine();
 
+            /**< dt - second */
             void world_update(float dt);
 
             void action_update(Action act);
 
         private:
-            bool _insert(OperatorHandle op_h);
-
-            void _del(OperatorHandle op_h);
-
-        private:
             shared_ptr<GameWorld> m_world;
 
-            map<OperatorHandle, shared_ptr<Operator>> m_op_list;
+            SQLInterface db;
     };
 }
 

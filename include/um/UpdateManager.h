@@ -36,7 +36,7 @@ namespace um
 
         private:
 
-            const float m_fps = 0.25;
+            const float m_fps = 3;
 
             shared_ptr<UpdateEngine> m_engine;
 

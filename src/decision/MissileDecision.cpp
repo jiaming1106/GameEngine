@@ -32,8 +32,11 @@ Event MissileDecision::genEvent()
 {
     Action act1(ActionType("MISSILE"));
     um::Variant arg1(um::Variant::TYPE_HANDLE);
-    arg1.m_asHandle = m_bop_att;
+    arg1.m_asHandle = -1;
     act1.addArg(arg1);
+    um::Variant arg2(um::Variant::TYPE_HANDLE);
+    arg2.m_asHandle = m_bop_att;
+    act1.addArg(arg2);
 
     Event sht_ev(act1);
 

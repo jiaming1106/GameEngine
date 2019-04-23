@@ -35,11 +35,9 @@ namespace um
 
     typedef string UsrInput;
     typedef string DecisionType;
-    typedef string ActionType;
+
     typedef float Position;
     typedef unsigned int OperatorHandle;
-    typedef vector<function<void()>> InsTaskList;
-    typedef vector<function<void(double delta)>> SusTaskList;
 
     /**< When meet a REGIST request, create a class of it to regis it in the Factory.
     return new decisionType is the KEY CODE, this is why we use #define.

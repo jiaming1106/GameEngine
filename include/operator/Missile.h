@@ -1,5 +1,5 @@
-#ifndef TANK_H
-#define TANK_H
+#ifndef MISSILE_H
+#define MISSILE_H
 
 #include <um/Marco.h>
 #include <um/Operator.h>
@@ -9,36 +9,34 @@
 #include <memory>
 
 using namespace um;
-using namespace std;
 
-class Tank : public um::Operator
+class Missile : public um::Operator
 {
     public:
-        Tank();
-        Tank(OperatorHandle oh, unsigned int pl, unsigned int b, um::Position po);
-        ~Tank();
+        Missile();
+        Missile(OperatorHandle oh, unsigned int pl, um::Position po);
+        ~Missile();
 
         int onUpdate(float dt);
 
     private:
-        void _init_bind();
-
-    private:
         map<string, shared_ptr<State>> m_map_update;
-        vector<um::OperatorHandle> m_link_op;
 
     private:
         float m_v;
         int m_desti;
+        double m_lifetime;
+
+        void _init_bind();
+
         int onMove(Action &act);
         int onMoveTo(Action &act);
         int onShoot(Action &act);
         int onInjury(Action &act);
         int onStop(Action &act);
-        int onLink(Action &act);
         int onMoving(float dt);
+        int onDestroy(Action &act);
         int isGetP();
-
 };
 
-#endif // TANK_H
+#endif // MISSILE_H

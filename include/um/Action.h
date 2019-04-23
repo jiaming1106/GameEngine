@@ -8,6 +8,8 @@ using namespace std;
 
 namespace um
 {
+    typedef string ActionType;
+
     /**< the message Engine send to Object */
     class Action
     {
@@ -31,6 +33,8 @@ namespace um
             vector<Variant> m_args;
 
     };
+    typedef function<int(Action&)> ActionFunc;
+
 }
 
 #endif // UMACTION_H
