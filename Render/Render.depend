@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1555994278 source:/home/myubuntu/git/EventHandler/Render/main.cpp
+	<iostream>
+	<mysql/mysql.h>
+	<SQLInterface.h>
+	<unistd.h>
+	<um/Timer.h>
+
+1555989278 source:/home/myubuntu/git/EventHandler/Render/src/SQLInterface.cpp
+	"SQLInterface.h"
+	<iostream>
+	<math.h>
+
+1555989161 /home/myubuntu/git/EventHandler/Render/include/SQLInterface.h
+	<stdio.h>
+	<string>
+	<mysql/mysql.h>
+
+1555576884 source:/home/myubuntu/git/EventHandler/Render/src/um/Timer.cpp
+	<um/Timer.h>
+	<signal.h>
+	<sys/time.h>
+	<unistd.h>
+
+1555556978 /home/myubuntu/git/EventHandler/Render/include/um/Timer.h
+	<functional>
+	<thread>
+
