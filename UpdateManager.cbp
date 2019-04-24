@@ -16,6 +16,7 @@
 					<Add option="-lpthread" />
 					<Add directory="include" />
 					<Add directory="include/decision" />
+					<Add directory="include/component" />
 				</Compiler>
 				<Linker>
 					<Add option="-lpthread" />
@@ -32,6 +33,7 @@
 					<Add option="-lpthread" />
 					<Add directory="include" />
 					<Add directory="include/decision" />
+					<Add directory="include/component" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -45,6 +47,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/SQLInterface.h" />
+		<Unit filename="include/component/HealthComponent.h" />
+		<Unit filename="include/component/MobilityComponent.h" />
+		<Unit filename="include/component/WeaponComponent.h" />
 		<Unit filename="include/decision/MissileDecision.h" />
 		<Unit filename="include/decision/MoveDecision.h" />
 		<Unit filename="include/decision/MoveToDecision.h" />
@@ -55,6 +60,7 @@
 		<Unit filename="include/operator/Tank.h" />
 		<Unit filename="include/um/Action.h" />
 		<Unit filename="include/um/ActionHandler.h" />
+		<Unit filename="include/um/Component.h" />
 		<Unit filename="include/um/Decision.h" />
 		<Unit filename="include/um/DecisionFactory.h" />
 		<Unit filename="include/um/Event.h" />
@@ -67,9 +73,13 @@
 		<Unit filename="include/um/State.h" />
 		<Unit filename="include/um/Timer.h" />
 		<Unit filename="include/um/UpdateEngine.h" />
+		<Unit filename="include/um/UpdateHandler.h" />
 		<Unit filename="include/um/UpdateManager.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/SQLInterface.cpp" />
+		<Unit filename="src/component/HealthComponent.cpp" />
+		<Unit filename="src/component/MobilityComponent.cpp" />
+		<Unit filename="src/component/WeaponComponent.cpp" />
 		<Unit filename="src/decision/MissileDecision.cpp" />
 		<Unit filename="src/decision/MoveDecision.cpp" />
 		<Unit filename="src/decision/MoveToDecision.cpp" />
@@ -80,6 +90,7 @@
 		<Unit filename="src/operator/Tank.cpp" />
 		<Unit filename="src/um/Action.cpp" />
 		<Unit filename="src/um/ActionHandler.cpp" />
+		<Unit filename="src/um/Component.cpp" />
 		<Unit filename="src/um/Decision.cpp" />
 		<Unit filename="src/um/DecisionFactory.cpp" />
 		<Unit filename="src/um/Event.cpp" />
@@ -90,6 +101,7 @@
 		<Unit filename="src/um/State.cpp" />
 		<Unit filename="src/um/Timer.cpp" />
 		<Unit filename="src/um/UpdateEngine.cpp" />
+		<Unit filename="src/um/UpdateHandler.cpp" />
 		<Unit filename="src/um/UpdateManager.cpp" />
 		<Extensions>
 			<code_completion />

@@ -23,9 +23,28 @@ namespace um{
 
     int Operator::onUpdate(float dt)
     {
+        UpdateHandler::onUpdate(dt);
+
+        for(auto it : m_com_lists)
+        {
+            it->onUpdate(dt);
+        }
+
         return 1;
     }
 
+    int Operator::onAction(Action act)
+    {
+        int ret = 0;
+        if(ActionHandler::onAction(act))
+            ret = 1;
+        for(auto it : m_com_lists)
+        {
+            if(it->onAction(act))
+                ret = 1;
+        }
+        return ret;
+    }
 
     unsigned int Operator::getPlayer()
     {
@@ -52,6 +71,15 @@ namespace um{
         return m_type;
     }
 
+    void Operator::setPosition(Position pos)
+    {
+        m_pos = pos;
+    }
+
+    void Operator::setBlood(int blood)
+    {
+        m_blood = blood;
+    }
 
 }
 

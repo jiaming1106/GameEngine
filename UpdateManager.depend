@@ -210,10 +210,14 @@
 	<vector>
 	<um/Marco.h>
 
-1556012026 /home/myubuntu/git/EventHandler/UpdateManager/include/um/Operator.h
+1556092638 /home/myubuntu/git/EventHandler/UpdateManager/include/um/Operator.h
 	<um/Action.h>
 	<um/ActionHandler.h>
 	<um/EventSender.h>
+	<um/UpdateHandler.h>
+	<um/Component.h>
+	<vector>
+	<memory>
 
 1555556978 /home/myubuntu/git/EventHandler/UpdateManager/include/um/Timer.h
 	<functional>
@@ -308,18 +312,18 @@
 	<um/Decision.h>
 	<um/Event.h>
 
-1556012715 source:/home/myubuntu/git/EventHandler/UpdateManager/src/operator/Tank.cpp
+1556094722 source:/home/myubuntu/git/EventHandler/UpdateManager/src/operator/Tank.cpp
 	<operator/Tank.h>
 	<functional>
 	<iostream>
+	<component/HealthComponent.h>
+	<component/MobilityComponent.h>
+	<component/WeaponComponent.h>
 
-1556011358 /home/myubuntu/git/EventHandler/UpdateManager/include/operator/Tank.h
+1556094713 /home/myubuntu/git/EventHandler/UpdateManager/include/operator/Tank.h
 	<um/Marco.h>
 	<um/Operator.h>
-	<um/State.h>
-	<string>
-	<map>
-	<memory>
+	<vector>
 
 1555577688 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/umUpdateEngine.cpp
 	<um/UpdateEngine.h>
@@ -339,7 +343,7 @@
 1555576856 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/Event.cpp
 	<um/Event.h>
 
-1556012029 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/Operator.cpp
+1556092653 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/Operator.cpp
 	<um/Operator.h>
 	<iostream>
 
@@ -361,7 +365,7 @@
 	<functional>
 	<assert.h>
 
-1556010949 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/UpdateEngine.cpp
+1556013093 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/UpdateEngine.cpp
 	<um/UpdateEngine.h>
 	<um/Marco.h>
 	<iostream>
@@ -404,18 +408,17 @@
 1555656972 /home/myubuntu/git/EventHandler/UpdateManager/include/decision/MissileDecision.h
 	<um/Decision.h>
 
-1556012644 source:/home/myubuntu/git/EventHandler/UpdateManager/src/operator/Missile.cpp
+1556094718 source:/home/myubuntu/git/EventHandler/UpdateManager/src/operator/Missile.cpp
 	<operator/Missile.h>
 	<functional>
 	<iostream>
+	<component/HealthComponent.h>
+	<component/MobilityComponent.h>
+	<component/WeaponComponent.h>
 
-1556011362 /home/myubuntu/git/EventHandler/UpdateManager/include/operator/Missile.h
+1556094713 /home/myubuntu/git/EventHandler/UpdateManager/include/operator/Missile.h
 	<um/Marco.h>
 	<um/Operator.h>
-	<um/State.h>
-	<string>
-	<map>
-	<memory>
 
 1555911872 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/um/ActionHandler.cpp
 	"um/ActionHandler.h"
@@ -427,7 +430,7 @@
 	<string>
 	<map>
 
-1556002418 /home/myubuntu/git/EventHandler/UpdateManager/include/um/ActionHandler.h
+1556090778 /home/myubuntu/git/EventHandler/UpdateManager/include/um/ActionHandler.h
 	<um/Action.h>
 	<um/Marco.h>
 	<functional>
@@ -459,4 +462,54 @@
 
 1556003995 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/EventSender.cpp
 	"um/EventSender.h"
+
+1556077103 /home/myubuntu/git/EventHandler/UpdateManager/include/um/UpdateHandler.h
+	<um/State.h>
+	<string>
+	<map>
+	<memory>
+
+1556091284 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/Component.cpp
+	"um/Component.h"
+
+1556091278 /home/myubuntu/git/EventHandler/UpdateManager/include/um/Component.h
+	<um/ActionHandler.h>
+	<um/UpdateHandler.h>
+
+1556077140 source:/home/myubuntu/git/EventHandler/UpdateManager/src/um/UpdateHandler.cpp
+	"um/UpdateHandler.h"
+	<vector>
+
+1556091312 source:/home/myubuntu/git/EventHandler/UpdateManager/src/component/HealthComponent.cpp
+	"HealthComponent.h"
+	<iostream>
+	<functional>
+	<um/Marco.h>
+
+1556091369 /home/myubuntu/git/EventHandler/UpdateManager/include/component/HealthComponent.h
+	<um/Component.h>
+	<um/Operator.h>
+	<um/Action.h>
+
+1556092577 source:/home/myubuntu/git/EventHandler/UpdateManager/src/component/MobilityComponent.cpp
+	"MobilityComponent.h"
+	<iostream>
+	<functional>
+	<um/Marco.h>
+
+1556091238 /home/myubuntu/git/EventHandler/UpdateManager/include/component/MobilityComponent.h
+	<um/Component.h>
+	<um/Operator.h>
+	<um/Action.h>
+
+1556091316 source:/home/myubuntu/git/EventHandler/UpdateManager/src/component/WeaponComponent.cpp
+	"WeaponComponent.h"
+	<iostream>
+	<functional>
+	<um/Marco.h>
+
+1556091378 /home/myubuntu/git/EventHandler/UpdateManager/include/component/WeaponComponent.h
+	<um/Component.h>
+	<um/Operator.h>
+	<um/Action.h>
 

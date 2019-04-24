@@ -4,27 +4,25 @@
 #include <um/Action.h>
 #include <um/ActionHandler.h>
 #include <um/EventSender.h>
+#include <um/UpdateHandler.h>
+#include <um/Component.h>
+#include <vector>
+#include <memory>
 
 namespace um
 {
-    class Operator : public ActionHandler, public EventSender
+    class Operator : public ActionHandler, public EventSender, public UpdateHandler
     {
         public:
             Operator();
 
-            /**< TODO : NOT a general constructor */
             Operator(OperatorHandle oh, unsigned int pl, unsigned int b, um::Position po, std::string name = "Operator");
 
             virtual ~Operator();
 
-            /** \brief to response World Update
-             *
-             * \param
-             * \param
-             * \return 1 - still need update
-             *         0 - died
-             */
             virtual int onUpdate(float dt);
+
+            virtual int onAction(Action act);
 
         protected:
             /**< TODO : HOW to manage these property better and more flexible*/
@@ -37,10 +35,20 @@ namespace um
 
         public:
             unsigned int getPlayer();
+
             Position getPosition();
+            void setPosition(Position pos);
+
             OperatorHandle getHandle();
+
             int getBlood();
+            void setBlood(int blood);
+
             int getType();
+
+        protected:
+            /**< build up by components */
+            std::vector<std::shared_ptr<Component>> m_com_lists;
 
     };
 }

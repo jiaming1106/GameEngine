@@ -3,10 +3,7 @@
 
 #include <um/Marco.h>
 #include <um/Operator.h>
-#include <um/State.h>
-#include <string>
-#include <map>
-#include <memory>
+#include <vector>
 
 using namespace um;
 using namespace std;
@@ -18,26 +15,17 @@ class Tank : public um::Operator
         Tank(OperatorHandle oh, unsigned int pl, unsigned int b, um::Position po);
         ~Tank();
 
+        //override
         int onUpdate(float dt);
 
     private:
-        void _init_bind();
+        void _init_com();
 
     private:
-        map<string, shared_ptr<State>> m_map_update;
         vector<um::OperatorHandle> m_link_op;
 
     private:
-        float m_v;
-        int m_desti;
-        int onMove(Action &act);
-        int onMoveTo(Action &act);
-        int onShoot(Action &act);
-        int onInjury(Action &act);
-        int onStop(Action &act);
         int onLink(Action &act);
-        int onMoving(float dt);
-        int isGetP();
 
 };
 

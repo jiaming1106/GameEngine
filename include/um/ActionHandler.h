@@ -18,7 +18,7 @@ class ActionHandler
     public:
         ActionHandler();
 
-        ~ActionHandler();
+        virtual ~ActionHandler();
 
         /** \brief to response different action
          *
@@ -27,7 +27,7 @@ class ActionHandler
          * \return 1 - need to be update
          *         0 - just instantaneous action
          */
-        int onAction(Action act);
+        virtual int onAction(Action act);
 
     protected:
         /** \brief to bind a action function
