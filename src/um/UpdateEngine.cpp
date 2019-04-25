@@ -41,13 +41,13 @@ void um::UpdateEngine::action_update(Action act)
 {
     cout<<"\033[31m\033[47m";
     /**< BAD CODING */
-    if(act.arg(0).m_asHandle<0)
+    if(act.arg(0).data().m_asHandle<0)
     {
         m_world->onAction(act);
     }
 
     /**< Get the OperatorHandle which will do this action */
-    auto it = m_world->find(act.arg(0).m_asHandle);
+    auto it = m_world->find(act.arg(0).data().m_asHandle);
     if(it!=m_world->end())
     {
         /**< if returned that the OP need to be updated, insert it to the update list*/

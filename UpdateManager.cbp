@@ -75,6 +75,7 @@
 		<Unit filename="include/um/UpdateEngine.h" />
 		<Unit filename="include/um/UpdateHandler.h" />
 		<Unit filename="include/um/UpdateManager.h" />
+		<Unit filename="include/um/Variant.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/SQLInterface.cpp" />
 		<Unit filename="src/component/HealthComponent.cpp" />

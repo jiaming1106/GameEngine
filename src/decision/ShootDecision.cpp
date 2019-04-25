@@ -45,15 +45,15 @@ Event ShootDecision::genEvent()
 {
     Action act1(ActionType("SHOOT"));
     um::Variant arg1(um::Variant::TYPE_HANDLE);
-    arg1.m_asHandle = m_bop_att;
+    arg1.SetData(m_bop_att);
     act1.addArg(arg1);
 
     Action act2(ActionType("INJURY"));
     um::Variant arg2(um::Variant::TYPE_HANDLE);
-    arg2.m_asHandle = m_bop_obj;
+    arg2.SetData(m_bop_obj);
     act2.addArg(arg2);
     um::Variant arg3(um::Variant::TYPE_INT);
-    arg3.m_asInt = m_damage;
+    arg3.SetData(m_damage);
     act2.addArg(arg3);
 
     Event sht_ev(act1);

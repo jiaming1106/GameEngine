@@ -59,7 +59,7 @@ int Tank::onUpdate(float dt)
 
 int Tank::onLink(Action& act)
 {
-    m_link_op.push_back(act.arg(1).m_asHandle);
+    m_link_op.push_back(act.arg(1).data().m_asHandle);
     return 0;
 }
 

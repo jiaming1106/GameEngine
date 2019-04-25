@@ -7,23 +7,11 @@
 #include <iostream>
 #include <sstream>
 
-#include <decision/MoveDecision.h>
-#include <decision/ShootDecision.h>
-#include <decision/StopDecision.h>
-#include <decision/MoveToDecision.h>
-#include <decision/MissileDecision.h>
-
 using namespace um;
 
 interface::interface()
 {
-    /**< TODO : init from a config files AND move to a new class
-    to keep the interface clean AND data-driven*/
-    REGISTERDECISION(MoveDecision);
-    REGISTERDECISION(ShootDecision);
-    REGISTERDECISION(StopDecision);
-    REGISTERDECISION(MoveToDecision);
-    REGISTERDECISION(MissileDecision);
+
 }
 
 interface::~interface()
@@ -64,10 +52,6 @@ shared_ptr<Decision> interface::_map(const UsrInput usr_input)
 DecisionType interface::_getDecisionType(const UsrInput input)
 {
     DecisionType dt;
-    /**< TODO : Read Type From Input */
-    /**< Maybe Map from a unified config file as the Register*/
-    /**< MakeSure the MAP the same as the RegisterClass */
-    /**< BAD CODING */
     if(input.empty()) return dt;
     if(input.at(0)=='-'){
         cout<<"\033[33m";
@@ -82,23 +66,11 @@ DecisionType interface::_getDecisionType(const UsrInput input)
             m_um.onStop();
             cout<<"GAME OVER"<<endl;
         }
-    cout<<"\033[0m";
+        cout<<"\033[0m";
     }else{
+        /**< BAD CODING */
         stringstream ss(input);
-        string buf;
-        ss>>buf;
-        /**< Maybe MAP is better */
-        if(!buf.compare("mov"))
-            dt = "MoveDecision";
-        else if(!buf.compare("att"))
-            dt = "ShootDecision";
-        else if(!buf.compare("attl"))
-            dt = "MissileDecision";
-        else if(!buf.compare("stop"))
-            dt = "StopDecision";
-        else if(!buf.compare("movt"))
-            dt = "MoveToDecision";
+        ss>>dt;
     }
     return dt;
 }
-

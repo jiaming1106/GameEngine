@@ -35,11 +35,11 @@ Event MoveToDecision::genEvent()
 
 //add action arguments
     um::Variant arg1(um::Variant::TYPE_HANDLE);
-    arg1.m_asHandle = m_move_bop;
+    arg1.SetData(m_move_bop);
     mv_act.addArg(arg1);
 
     um::Variant arg2(um::Variant::TYPE_INT);
-    arg2.m_asInt = m_move_path;
+    arg2.SetData(m_move_path);
     mv_act.addArg(arg2);
 
 //generate event

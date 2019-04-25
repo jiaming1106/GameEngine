@@ -25,7 +25,7 @@ Event StopDecision::genEvent()
 {
     Action act1(ActionType("STOP"));
     um::Variant arg1(um::Variant::TYPE_HANDLE);
-    arg1.m_asHandle = m_stop_bop;
+    arg1.SetData(m_stop_bop);
     act1.addArg(arg1);
 
     Event stop_ev(act1);

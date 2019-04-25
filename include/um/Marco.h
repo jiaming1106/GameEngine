@@ -8,31 +8,6 @@ using namespace std;
 
 namespace um
 {
-    /**< Variant class */
-    struct Variant
-    {
-        enum Type
-        {
-            TYPE_INT,
-            TYPE_FLOAT,
-            TYPE_BOOL,
-            TYPE_HANDLE
-        };
-
-        explicit Variant(Type tt) : m_type(tt) {}
-        ~Variant(){}
-
-        Type m_type;
-
-        union
-        {
-            int m_asInt;
-            float m_asFloat;
-            bool m_asBool;
-            int m_asHandle;
-        };
-    };
-
     typedef string UsrInput;
     typedef string DecisionType;
 

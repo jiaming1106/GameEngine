@@ -32,7 +32,7 @@ int MobilityComponent::onMove(Action& act)
 {
     cout<<"Player "<<m_op->getPlayer()<<" OP"<<m_op->getHandle()<<" : ";
     Position temp = m_op->getPosition();
-    m_op->setPosition(temp + act.arg(1).m_asInt);
+    m_op->setPosition(temp + act.arg(1).data().m_asInt);
     cout<<"Move "<<temp<<"-->"<<m_op->getPosition()<<endl;
     return 0;
 }
@@ -40,7 +40,7 @@ int MobilityComponent::onMove(Action& act)
 int MobilityComponent::onMoveTo(Action& act)
 {
     cout<<"Player "<<m_op->getPlayer()<<" OP"<<m_op->getHandle()<<" : ";
-    m_desti = act.arg(1).m_asInt;
+    m_desti = act.arg(1).data().m_asInt;
     m_v = m_desti > m_op->getPosition() ? 1 : -1;
     shared_ptr<State> mt(new State(bind(&MobilityComponent::onMoving,this,placeholders::_1), bind(&MobilityComponent::isGetP,this)));
     _add_upt("MOVING",mt);

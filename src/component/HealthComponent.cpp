@@ -31,7 +31,7 @@ int HealthComponent::onInjury(Action& act)
 {
     cout<<"Player "<<m_op->getPlayer()<<" OP"<<m_op->getHandle()<<" : ";
     unsigned int temp = m_op->getBlood();
-    m_op->setBlood(temp-act.arg(1).m_asInt);
+    m_op->setBlood(temp-act.arg(1).data().m_asInt);
     cout<<"Injury "<<temp<<"-->"<<m_op->getBlood();
     /**< TODO : blood < 1 should be del immediately or
     died tank can shoot or move if send the Decision quickly*/

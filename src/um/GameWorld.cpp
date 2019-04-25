@@ -60,7 +60,7 @@ OperatorHandle GameWorld::_insert(shared_ptr<Operator> op)
 
 int GameWorld::onMissile(Action& act)
 {
-    shared_ptr<Operator> tp = m_op_list[act.arg(1).m_asHandle];  //not safe
+    shared_ptr<Operator> tp = m_op_list[act.arg(1).data().m_asHandle];  //not safe
 
     /**<  create & add a missile */
     shared_ptr<Missile> m1(new Missile(_newOpHandle(),tp->getPlayer(),tp->getPosition()));
@@ -73,10 +73,10 @@ int GameWorld::onMissile(Action& act)
     /**< gen action of binding missile */
     Action bact(ActionType("LINKOP"));
     um::Variant arg1(um::Variant::TYPE_HANDLE);
-    arg1.m_asHandle = act.arg(1).m_asHandle;
+    arg1.SetData(act.arg(1).data().m_asHandle);
     bact.addArg(arg1);
     um::Variant arg2(um::Variant::TYPE_HANDLE);
-    arg2.m_asHandle = mi_h;
+    arg2.SetData(mi_h);
     bact.addArg(arg2);
     /**< and bind it to the tank that launch it */
     tp->onAction(bact);
